@@ -170,3 +170,25 @@
       }
      return -1;
     }
+
+# Most Frequent Characte
+        char getMaxOccuringChar(char* str) {
+        // code here
+        char ch[26]={0};
+        
+        for(int i=0;str[i]!='\0';i++){
+            char c=str[i];
+            ch[c-'a']++;
+        }
+        
+        int ind=0;
+        int value=-1;
+        
+        for(int i=0;i<26;i++){
+            if(ch[i]>value){
+                ind=i;
+                value=ch[i];
+            }
+        }
+        return ind+ 'a'; 
+    }
