@@ -192,3 +192,69 @@
         }
         return ind+ 'a'; 
     }
+
+# Plus One
+    class Solution {
+    public:
+        vector<int> plusOne(vector<int>& digits) {
+            int i=digits.size()-1;
+            vector<int> ans;
+            int carray=1;
+            for(int i=digits.size()-1;i>=0;i--){
+                int sum=carray+digits[i];
+                ans.push_back(sum%10);
+                carray=sum/10;
+            }
+            if (carray == 1) {
+                ans.push_back(1);
+            }
+            reverse(ans.begin(),ans.end());
+            return ans;
+
+        }
+    };
+
+# Add Binary
+
+    class Solution {
+    public:
+        string addBinary(string a, string b) {
+            string ans = "";
+            int i = a.length() - 1;
+            int j = b.length() - 1;
+            int carry = 0;
+            while (i >= 0 || j >= 0 || carry) {
+                int sum = carry;
+                if (i >= 0) sum += a[i--] - '0';
+                if (j >= 0) sum += b[j--] - '0';
+                ans.push_back((sum % 2) + '0');
+                carry = sum / 2;
+            }
+            reverse(ans.begin(), ans.end());
+            return ans;
+        }
+    };
+
+#  Add to Array-Form of Integer
+
+    class Solution {
+    public:
+        vector<int> addToArrayForm(vector<int>& num, int k) {
+            int i = num.size() - 1;
+            int carry = k;
+
+            while (i >= 0 || carry > 0) {
+                if (i >= 0) {
+                    carry += num[i];
+                    num[i] = carry % 10;
+                    carry /= 10;
+                    i--;
+                } else {
+                    num.insert(num.begin(), carry % 10);
+                    carry /= 10;
+                }
+            }
+
+            return num;
+        }
+    };
