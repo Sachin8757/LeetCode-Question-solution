@@ -258,3 +258,59 @@
             return num;
         }
     };
+
+# Subsequences of String
+
+    void solve(string str,vector<string>& ans,string op,int ind){
+        if(ind>=str.length()){
+            if(op.length()>0){
+                ans.push_back(op);
+            }
+            return;
+        }
+        //exclude
+        solve(str,ans,op,ind+1);
+
+        //include 
+        char ch=str[ind];
+        op.push_back(ch);
+        solve(str,ans,op,ind+1);
+
+        return ;
+    }
+    vector<string> subsequences(string str){
+        vector<string>ans;
+        string op;
+        int ind=0;
+        solve(str,ans,op,ind);
+        return ans;
+        
+    }
+
+# subset Array
+    class Solution {
+        private:
+        void solve(vector<int>nums,vector<vector<int>>& ans,vector<int>op,int ind){
+            if(ind>=nums.size()){
+                ans.push_back(op);
+                return ;
+            }
+
+            //exclude
+            solve(nums,ans,op,ind+1);
+
+            //include
+
+            int ele=nums[ind];
+            op.push_back(ele);
+            solve(nums,ans,op,ind+1);
+        }
+    public:
+        vector<vector<int>> subsets(vector<int>& nums) {
+            vector<vector<int>> ans;
+            vector<int>op;
+            int ind=0;
+            solve(nums,ans,op,ind);
+            return ans;
+        }
+    };
